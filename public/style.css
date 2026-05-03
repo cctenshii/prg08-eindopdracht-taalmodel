@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Dancing+Script:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Crimson Text', 'Georgia', serif;
+    max-width: min(100%, 1200px);
+    margin: 0 auto;
+    padding: 20px;
+    /* Mondstadt inspired colors and background */
+    background:
+        linear-gradient(rgba(240, 248, 255, 0.4), rgba(240, 248, 255, 0.4)),
+        url('https://images8.alphacoders.com/109/1096924.jpg'); /* Classic Mondstadt view */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #3b4254;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    margin-bottom: 1.5rem;
+    color: #2c5d8f; /* Mondstadt Anemo Blue */
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 0px #ffffff, 0 0 10px rgba(135, 206, 235, 0.5);
+    font-family: 'Crimson Text', serif;
+    letter-spacing: 1px;
+    text-transform: none;
+    position: relative;
+    padding-bottom: 1rem;
+    flex-shrink: 0;
+}
+
+h1::after {
+    content: '✦ ✧ Teyvat’s Ultimate Companion ✧ ✦';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.1rem;
+    color: #4a7c9d;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+#chat-container {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 1.5rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 20px;
+    border: 4px solid #8eacc3; /* Soft Blue-Gray Border */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(8px);
+    position: relative;
+}
+
+.message-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    margin: 1.2rem 0;
+}
+
+.message-row.user-row {
+    justify-content: flex-end;
+}
+
+.message-row.ai-row {
+    justify-content: flex-start;
+}
+
+.message-avatar {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #f3e5c2;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.message-bubble {
+    max-width: 75%;
+    padding: 1rem 1.5rem;
+    border-radius: 18px;
+    line-height: 1.6;
+    word-wrap: break-word;
+    position: relative;
+    font-size: 1.05rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.message-bubble.user {
+    background: #ffffff;
+    color: #3b4254;
+    border: 2px solid #8eacc3;
+    border-bottom-right-radius: 4px;
+}
+
+.message-bubble.ai {
+    background: #eef6fc; /* Very Light Anemo Blue */
+    color: #2c5d8f;
+    border: 2px solid #f3e5c2; /* Gold accent */
+    border-bottom-left-radius: 4px;
+}
+
+.token-count {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    margin-top: 6px;
+    text-align: right;
+    font-style: italic;
+    color: #4a7c9d;
+}
+
+#chat-form {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 15px;
+    flex-shrink: 0;
+}
+
+.input-wrapper {
+    display: flex;
+    gap: 0.8rem;
+}
+
+#input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border: 3px solid #8eacc3;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    font-family: inherit;
+    font-size: 1.1rem;
+    color: #2c5d8f;
+    outline: none;
+    transition: all 0.2s;
+}
+
+#input:focus {
+    border-color: #2c5d8f;
+    box-shadow: 0 0 15px rgba(44, 93, 143, 0.2);
+}
+
+#input::placeholder {
+    color: #8eacc3;
+    font-style: italic;
+}
+
+button {
+    padding: 0 2.5rem;
+    background: #2c5d8f;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+button:hover:not(:disabled) {
+    background: #4a7c9d;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(44, 93, 143, 0.3);
+}
+
+button:disabled {
+    background: #bccad6;
+    cursor: not-allowed;
+}
+
+/* Custom Scrollbar for Anemo feel */
+#chat-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+#chat-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+#chat-container::-webkit-scrollbar-thumb {
+    background: #8eacc3;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    .message-avatar {
+        width: 50px;
+        height: 50px;
+    }
+    .message-bubble {
+        max-width: 85%;
+    }
+}
